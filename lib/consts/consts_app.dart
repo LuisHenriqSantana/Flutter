@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class ConstsApp{
 
   static const whitePokeball = 'assets/images/pokeball.png';
