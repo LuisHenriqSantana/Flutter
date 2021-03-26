@@ -16,14 +16,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   PokeApiStore _pokemonStore;
+
   @override
   void initState() {
     super.initState();
-    _pokemonStore = GetIt .instance<PokeApiStore>();
+    _pokemonStore = GetIt.instance<PokeApiStore>();
     if (_pokemonStore.pokeAPI == null) {
       _pokemonStore.fetchPokemonList();
     }
   }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -34,7 +36,7 @@ class _HomePageState extends State<HomePage> {
         overflow: Overflow.visible,
         children: <Widget>[
           Positioned(
-            top: -(240 / 4.7),
+            top: MediaQuery.of(context).padding.top - 240 / 2.9,
             left: screenWidth - (240 / 1.6),
             child: Opacity(
               child: Image.asset(
@@ -85,15 +87,19 @@ class _HomePageState extends State<HomePage> {
                                       num: pokemon.num,
                                     ),
                                     onTap: () {
-                                      _pokemonStore.setPokemonAtual(index: index);
+                                      _pokemonStore.setPokemonAtual(
+                                          index: index);
                                       Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (BuildContext
-                                            context) =>
-                                                PokeDetailPage(index: index,),
-                                            fullscreenDialog: true,
-                                          ));
+                                        context,
+                                        MaterialPageRoute(
+                                          builder:
+                                              (BuildContext context) =>
+                                              PokeDetailPage(
+                                                index: index,
+                                              ),
+                                          fullscreenDialog: true,
+                                        ),
+                                      );
                                     },
                                   ),
                                 ),
